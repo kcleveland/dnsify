@@ -15,7 +15,7 @@ domains = {
 dns_params = {
   :server => '127.0.0.1',
   :rndc_key => 'rndc-key',
-  :rndc_secret => 'uHHMi8hBYlHmjHe/8f6gAg==',
+  :rndc_secret => 'uHHMi8hBYlHmjHe/8f6gAgxx',
   :ttl => '300'
 }
 
