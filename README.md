@@ -7,3 +7,6 @@ Tested on Ubuntu 14.x LTS. This API can be run locally on the master bind server
 ruby dns.rb
 </pre>
 Example Bind configuration files have been provided to help facilitate getting started using this API with a Bind DNS server.
+
+## DNSify RESTful API
+The API currently supports PUT, POST, and DELETE methods to add, update, and delete entries from DNS. On successful PUT a 201 is returned, on successful POST or DELETE a 200 is returned. Duplicate entries will not be created and will result in a 500 error returned.
