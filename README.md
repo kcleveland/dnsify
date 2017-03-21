@@ -14,17 +14,17 @@ The API currently supports PUT, POST, and DELETE methods to add, update, and del
 <b>PUT</b>
 A PUT request is used to create a new record in DNS. DNSify will create entries in both the forward and reverse zone files on successful PUT. A 201 is returned on success, otherwise a 500 error is returned if the entry already exists or if there was another problem.
 <pre>
-curl -i -X PUT -H 'Content-Type: application/json' -H 'X-Api-Key: secret' -d '{ "hostname": "hosty.xlabs.avaya.com", "ip": "10.130.124.24" }' http://localhost:4567/dns
+curl -i -X PUT -H 'Content-Type: application/json' -H 'X-Api-Key: secret' -d '{ "hostname": "examplehost.xlabs.avaya.com", "ip": "10.130.124.24" }' http://localhost:4567/dns
 </pre>
 
 <b>POST</b>
 A POST request is used to update/change an existing DNS entry (can change either IP or hostname for an existing entry). On successful POST a 200 is returned, otherwise a 500 error is returned if the entry does not exist or if there was another problem.
 <pre>
-curl -i -X POST -H 'Content-Type: application/json' -H 'X-Api-Key: secret' -d '{ "hostname": "hosttest.xlabs.avaya.com", "ip": "10.130.124.23" }' http://localhost:4567/dns
+curl -i -X POST -H 'Content-Type: application/json' -H 'X-Api-Key: secret' -d '{ "hostname": "examplehost.xlabs.avaya.com", "ip": "10.130.124.23" }' http://localhost:4567/dns
 </pre>
 
 <b>DELETE</b>
 A DELETE request is used to delete an existing DNS entry. On successful DELETE a 200 is returned, otherwise a 500 error is returned if the entry to delete to does not exist or if there was another problem.
 <pre>
-curl -i -X DELETE -H 'Content-Type: application/json' -H 'X-Api-Key: secret' -d '{ "hostname": "hosttest.xlabs.avaya.com", "ip": "10.130.124.23" }' http://localhost:4567/dns
+curl -i -X DELETE -H 'Content-Type: application/json' -H 'X-Api-Key: secret' -d '{ "hostname": "examplehost.xlabs.avaya.com", "ip": "10.130.124.23" }' http://localhost:4567/dns
 </pre>
