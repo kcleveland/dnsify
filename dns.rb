@@ -5,8 +5,8 @@ require 'sinatra'
 require 'json'
 require 'ipaddr'
 
-# curl -X POST/PUT -H 'Content-Type: application/json' -H 'X-Api-Key: secret' -d '{ "hostname": "host12.apple.com", "ip": "1.1.1.12" }' http://localhost:4567/dns
-# curl -X DELETE -H 'Content-Type: application/json' -H 'X-Api-Key: secret' -d '{ "hostname": "host12.apple.com", "ip": "1.1.1.12" }' http://localhost:4567/dns
+# curl -X POST/PUT -H 'Content-Type: application/json' -H 'X-Api-Key: secret' -d '{ "hostname": "example.avaya.com", "ip": "1.1.1.12" }' http://localhost:4567/dns
+# curl -X DELETE -H 'Content-Type: application/json' -H 'X-Api-Key: secret' -d '{ "hostname": "example.avaya.com", "ip": "1.1.1.12" }' http://localhost:4567/dns
 
 domains = {
   :xlabs => 'xlabs.avaya.com'
