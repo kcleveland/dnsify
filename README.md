@@ -1,12 +1,5 @@
 # dnsify
-Simple REST-based API for Bind DNS servers. It currently supports PUT, POST, and DELETE operations to add, update, and remove entries from a Bind DNS setup.
-
-## Instructions
-Tested on Ubuntu 14.x LTS. This API can be run locally on the master bind server itself (supports master/slaves as well) or remotely on another server. You must first install ruby and use gem to install the sinatra and json gems.
-<pre>
-ruby dns.rb
-</pre>
-Example Bind configuration files have been provided to help facilitate getting started using this API with a Bind DNS server.
+Simple REST-based API for Bind DNS servers. It currently supports PUT, POST, and DELETE operations to add, update, and remove A records (forward lookups) and PTR records (reverse lookups) from an existing Bind DNS setup.
 
 ## Using the DNSify RESTful API
 The API currently supports PUT, POST, and DELETE methods to add, update, and delete entries from DNS. On successful PUT a 201 is returned, on successful POST or DELETE a 200 is returned. Duplicate entries will not be created and will result in a 500 error returned.
@@ -30,3 +23,14 @@ A DELETE request is used to delete an existing DNS entry. DNSify will remove ent
 <pre>
 curl -i -X DELETE -H 'Content-Type: application/json' -H 'X-Api-Key: secret' -d '{ "hostname": "examplehost.xlabs.avaya.com", "ip": "10.130.124.23" }' http://localhost:4567/dns
 </pre>
+
+## Installation Instructions
+Tested on Ubuntu 14.x LTS. You may run your own DNS-as-a-Service by running the code on your own Bind DNS server setup. This API can be run locally on the master bind server itself (supports master/slaves as well) or remotely on another server. You must first install ruby and use gem to install the sinatra and json gems.
+<pre>
+ruby dns.rb
+</pre>
+Example Bind configuration files have been provided to help facilitate getting started using this API with your own Bind DNS server.
+
+###TODO
+<li>Create tokenized authentication method</li>
+<li>Add support for CNAME records</li>
