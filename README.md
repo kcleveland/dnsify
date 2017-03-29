@@ -19,7 +19,7 @@ curl -i -X POST -H 'Content-Type: application/json' -H 'X-Api-Key: secret' -d '{
 </pre>
 
 <b>DELETE</b>
-A DELETE request is used to delete an existing DNS entry. DNSify will remove entries in both the forward and reverse zone files on successful DELETE. On successful DELETE a 200 is returned, otherwise a 500 error is returned if the entry to delete to does not exist or if there was another problem.
+A DELETE request is used to delete an existing DNS entry. DNSify will remove entries in both the forward and reverse zone files on successful DELETE. On successful DELETE a 200 is returned, otherwise a 500 error is returned if the entry specified to delete does not exist or if there was another problem.
 <pre>
 curl -i -X DELETE -H 'Content-Type: application/json' -H 'X-Api-Key: secret' -d '{ "hostname": "examplehost.xlabs.avaya.com", "ip": "10.130.124.23" }' http://localhost:4567/dns
 </pre>
@@ -48,6 +48,13 @@ dns_params = {
 If you want to run the API remotely (e.g. on a different server than the DNS server) then substitute in the IP address of your Bind DNS server for the "server" parameter shown in the code snippet above.
 
 Example Bind configuration files have been provided to help facilitate getting started using this API with your own Bind DNS server.
+
+## Master/Slave Setup Support
+This program utilizes the nsupdate utility to modify the Bind DNS zone files, so it works well with Bind master/slave setups since nsupdate increments the "serial" parameter in the zone files' SOA records any time a change is made.
+
+When a slave name server contacts a master server for zone data, it first asks for the "serial" number on the data. If the slave's serial number for the zone is lower than the master server's, the slave's zone data is out of date. In this case, the slave pulls a new copy of the zone. The slave will contact the master server for zone data based on the "refresh" interval configured in the zone's SOA record:
+
+?example?
 
 ## TODO
 <li>Create token-based authentication method</li>
