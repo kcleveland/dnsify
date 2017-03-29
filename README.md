@@ -25,7 +25,7 @@ curl -i -X DELETE -H 'Content-Type: application/json' -H 'X-Api-Key: secret' -d 
 </pre>
 
 ## Installation Instructions
-Tested on Ubuntu 14.x LTS and Bind 9. Create your own DNS-as-a-Service by running this code on your existing Bind DNS setup. This API can be run locally on the master Bind server itself (supports master/slave setups) or remotely from another server. You must first install ruby and use gem to install the sinatra and json gems.
+You can create your own DNS-as-a-Service by running this code on your existing Bind DNS setup. This API can be run locally on the master Bind server itself (supports master/slave setups) or remotely from another server. You must first install ruby and use gem to install the sinatra and json gems. Tested on Ubuntu 14.x LTS and Bind 9. 
 
 <pre>
 ruby dns.rb -o [ip_address]
@@ -33,7 +33,7 @@ ruby dns.rb -o [ip_address]
 
 Replace the IP address with the IP address of the server you are running this code on (this may or may not be the IP address of the Bind server).
 
-You'll also need to add your rndc-key on the lines shown below:
+You'll also need to add your rndc-key on the line shown below:
 
 <pre>
 dns_params = {
