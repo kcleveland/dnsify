@@ -75,7 +75,7 @@ rndc thaw
 </pre>
 
 ## Daemonized
-DNSify runs as a linux daemon when started and uses the built-in Ruby webserver called Puma. To check if it is running, use:
+DNSify runs in the background as a linux daemon when started and uses the built-in Ruby webserver called Puma. To check if it is running, use:
 
 <pre>
 ps aux | grep "puma"
