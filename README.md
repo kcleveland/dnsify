@@ -81,7 +81,7 @@ $ gem install bundler
 </pre>
 
 
-Lastly, install the sinatra and json gems:
+Lastly, install the sinatra and json gems required by DNSify:
 
 <pre>
 gem install sinatra
