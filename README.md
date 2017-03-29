@@ -7,7 +7,7 @@ The API currently supports PUT, POST, and DELETE methods to add, update, and del
 <b>PUT</b>
 A PUT request is used to create a new record in DNS. DNSify will create entries in both the forward and reverse zone files on successful PUT. A 201 is returned on success, otherwise a 500 error is returned if the entry already exists or if there was another problem.
 
-Note: You must substitute in the IP address of the Bind DNS server for "localhost" in the examples below.
+<i>Note: You must substitute in the IP address of the server that is running the API code for "localhost" in the examples below.</i>
 <pre>
 curl -i -X PUT -H 'Content-Type: application/json' -H 'X-Api-Key: secret' -d '{ "hostname": "examplehost.xlabs.avaya.com", "ip": "10.130.124.24" }' http://localhost:4567/dns
 </pre>
