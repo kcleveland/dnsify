@@ -25,12 +25,12 @@ curl -i -X DELETE -H 'Content-Type: application/json' -H 'X-Api-Key: secret' -d 
 </pre>
 
 ## Installation Instructions
-Tested on Ubuntu 14.x LTS. You may run your own DNS-as-a-Service by running the code on your own Bind DNS server setup. This API can be run locally on the master bind server itself (supports master/slaves as well) or remotely on another server. You must first install ruby and use gem to install the sinatra and json gems.
+Tested on Ubuntu 14.x LTS and Bind 9. You may run your own DNS-as-a-Service by running the code on your own Bind DNS server setup. This API can be run locally on the master bind server itself (supports master/slave setups) or remotely on another server. You must first install ruby and use gem to install the sinatra and json gems.
 <pre>
 ruby dns.rb
 </pre>
 Example Bind configuration files have been provided to help facilitate getting started using this API with your own Bind DNS server.
 
 ## TODO
-<li>Create tokenized authentication method</li>
+<li>Create token-based authentication method</li>
 <li>Add support for CNAME records</li>
