@@ -175,4 +175,5 @@ service rc.local start
 
 ## TODO
 <li>Create token-based authentication method</li>
+<li>Enhance error checking to support more informative return values instead of just a generic 500 all the way around</li>
 <li>Add support for CNAME records</li>
