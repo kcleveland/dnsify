@@ -50,7 +50,7 @@ If you want to run the API remotely (e.g. on a different server than the DNS ser
 Example Bind configuration files have been provided to help facilitate getting started using this API with your own Bind DNS server.
 
 ## Master/Slave Setup Support
-This program utilizes the nsupdate utility to modify the Bind DNS zone files, so it works well with Bind master/slave setups since nsupdate increments the "serial" parameter in the zone files' SOA records any time a change is made.
+DNSify utilizes the nsupdate utility to modify the Bind DNS zone files, so it works well with Bind master/slave setups since nsupdate increments the "serial" parameter in the zone files' SOA records any time a change is made.
 
 When a slave name server contacts a master server for zone data, it first asks for the "serial" number on the data. If the slave's serial number for the zone is lower than the master server's, the slave's zone data is out of date. In this case, the slave pulls a new copy of the zone. The slave will contact the master server for zone data based on the "refresh" interval configured in the zone's SOA record. In the example below our refresh interval is set to 8 hours, meaning that the slaves will poll the master every 8 hours for zone data changes:
 
@@ -62,6 +62,44 @@ xlabs.avaya.com         IN SOA  dns1.xlabs.avaya.com. root.xlabs.avaya.com. (
                                 604800     ; expire (1 week)
                                 38400      ; minimum (10 hours 40 minutes)
                                 )
+</pre>
+
+## Manual Zone Changes
+As mentioned, DNSify utilizes nsupdate to modify the zone files. Nsupdate is a dynamic DNS update utility, so if there is a manual change that must be made to a zone under DNSify's control then you will need to first freeze the zones before making the manua edits to the zone file, then you must thaw them in order to put them back into service. Use the following commands when making manual edits:
+
+<pre>
+rndc freeze
+[make your manual edits]
+rndc reload
+rndc thaw
+</pre>
+
+## Daemonized
+DNSify runs as a linux daemon when started and uses the built-in Ruby webserver called Puma. To check if it is running, use:
+
+<pre>
+ps aux | grep "puma"
+</pre>
+
+You will also probably want to make sure DNSify comes back automatically after a server reboot. On Ubuntu, simply edit the /etc/rc.local file to something similar to this:
+
+<pre>
+# Note full path to ruby executable
+/home/user/.rbenv/shims/ruby /home/user/dns.rb -o 10.130.124.18
+
+if [ $? -eq 0 ]; then
+    logger Success: DNSify has been started
+    exit 0
+else
+    logger Error: DNSify is unable to start
+    exit 1
+fi
+</pre>
+
+You can test this without actually needing to reboot by using:
+
+<pre>
+service rc.local start
 </pre>
 
 ## TODO
