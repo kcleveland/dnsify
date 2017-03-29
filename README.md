@@ -66,7 +66,7 @@ Verify that Ruby was installed properly:
 
 <pre>
 $ ruby -v
-<pre>
+</pre>
 
 You will likely not want Rubygems to generate local documentation for each gem that you install, as this process can be time consuming. To disable this:
 
