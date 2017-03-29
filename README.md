@@ -24,11 +24,82 @@ A DELETE request is used to delete an existing DNS entry. DNSify will remove ent
 curl -i -X DELETE -H 'Content-Type: application/json' -H 'X-Api-Key: secret' -d '{ "hostname": "examplehost.xlabs.avaya.com", "ip": "10.130.124.23" }' http://localhost:4567/dns
 </pre>
 
-## Installation Instructions
-You can create your own DNS-as-a-Service by running this code on your existing Bind DNS setup. This API can be run locally on the master Bind server itself (supports master/slave setups) or remotely from another server. You must first install ruby and use gem to install the sinatra and json gems. Tested on Ubuntu 14.x LTS and Bind 9. 
+## Create your own DNS-as-a-Service
+You can create your own DNS-as-a-Service by running this code against your existing Bind DNS setup. This API can be run locally on the master Bind server itself (supports master/slave setups) or remotely from another server. 
+
+We are currently using this on Ubuntu 14.04.4 LTS and Ruby 2.2.3. Before you begin, you'll need to make sure you are able to access the superuser account on your Ubuntu server (e.g. you must be able to issue sudo commands).
+
+<b>Install rbenv, Ruby and Gems</b>
+First, install rbenv (which is used to install and manage the ruby installation) and the ruby dependencies:
 
 <pre>
-ruby dns.rb -o [ip_address]
+$ sudo apt-get update
+
+$ sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
+</pre>
+
+Now we can install rbenv. Run these commands (as the user that will be using Ruby, e.g. probably your normal user and not the sudo/superuser):
+
+<pre>
+$ cd
+$ git clone git://github.com/sstephenson/rbenv.git .rbenv
+$ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+$ echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+
+$ git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+$ echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bash_profile
+$ source ~/.bash_profile
+</pre>
+
+This installs rbenv into your home directory and sets the appropriate environment variables that will allow rbenv to use the active version of Ruby.
+
+Now we can move on to installing Ruby. We are using ruby v.2.2.3. Again, as the user that will be using Ruby, install it with these commands:
+
+<pre>
+$ rbenv install -v 2.2.3
+$ rbenv global 2.2.3
+</pre>
+
+<i>The "global" sub-command sets the default version of Ruby that all of your shells will use. If you want to install and use a different version, simply run the rbenv commands with a different version number.</i>
+
+Verify that Ruby was installed properly:
+
+<pre>
+$ ruby -v
+<pre>
+
+You will likely not want Rubygems to generate local documentation for each gem that you install, as this process can be time consuming. To disable this:
+
+<pre>
+$ echo "gem: --no-document" > ~/.gemrc
+</pre>
+
+You will also want to install the bundler gem, it manages your application dependencies:
+
+<pre>
+$ gem install bundler
+</pre>
+
+
+Lastly, install the sinatra and json gems:
+
+<pre>
+gem install sinatra
+gem install json
+</pre>
+
+<b>Bind DNS Server Installation</b>
+Now we are ready to move onto the Bind DNS installation. For sake of simplicity we will assume you are running Bind on the same server as DNSify. We are currently using Bind v9.9.5.
+
+--bind install instructions go here--
+
+<b>Fire Up DNSify</b>
+It's time to turn on DNSify so we can start consuming our API and partially free ourselves from the drudgery of manual DNS management :)
+
+--instructions to clone DNSify??--
+
+<pre>
+$ ruby dns.rb -o [ip_address]
 </pre>
 
 Replace the IP address with the IP address of the server you are running this code on (this may or may not be the IP address of the Bind server).
