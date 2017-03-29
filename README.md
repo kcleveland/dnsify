@@ -33,8 +33,7 @@ ruby dns.rb -o [ip_address]
 
 Replace the IP address with the IP address of the server you are running this code on (this may or may not be the IP address of the Bind server).
 
-<b>Running the API on a Remote Server</b>
-If you want to run the API remotely (e.g. on a different server than the DNS server) then substitute in the IP address of your Bind DNS server for the "server" parameter shown in the code snippet below:
+You'll also need to add your rndc-key on the lines shown below:
 
 <pre>
 dns_params = {
@@ -44,6 +43,9 @@ dns_params = {
   :ttl => '300'
 }
 </pre>
+
+<b>Running the API on a Remote Server</b>
+If you want to run the API remotely (e.g. on a different server than the DNS server) then substitute in the IP address of your Bind DNS server for the "server" parameter shown in the code snippet above.
 
 Example Bind configuration files have been provided to help facilitate getting started using this API with your own Bind DNS server.
 
