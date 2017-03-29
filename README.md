@@ -65,7 +65,7 @@ xlabs.avaya.com         IN SOA  dns1.xlabs.avaya.com. root.xlabs.avaya.com. (
 </pre>
 
 ## Manual Zone Changes
-As mentioned, DNSify utilizes nsupdate to modify the zone files. Nsupdate is a dynamic DNS update utility, so if there is a manual change that must be made to a zone under DNSify's control then you will need to first freeze the zones before making the manua edits to the zone file, then you must thaw them in order to put them back into service. Use the following commands when making manual edits:
+As mentioned, DNSify utilizes nsupdate to modify the zone files. Nsupdate is a dynamic DNS update utility, so if there is a manual change that must be made to a zone under DNSify's control then you will need to first freeze the zones before making the manual edits to the zone file, then you must thaw them in order to put them back into service. Use the following commands when making manual edits:
 
 <pre>
 rndc freeze
